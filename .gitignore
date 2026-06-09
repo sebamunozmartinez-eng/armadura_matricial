@@ -40,4 +40,7 @@ pip-wheel-metadata/
 Thumbs.db
 
 # Salidas generadas por ejemplos o reportes
-outputs/
+outputs/*
+!outputs/figures/
+outputs/figures/*
+!outputs/figures/*.png

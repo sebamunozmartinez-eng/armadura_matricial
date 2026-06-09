@@ -38,9 +38,11 @@ from analisis_armadura.solver import (
     TrussAnalysisError,
     TrussValidationError,
 )
+from analisis_armadura.visualization import DEFAULT_DEFORMATION_SCALE, plot_truss
 
 __all__ = [
     "AnalysisResult",
+    "DEFAULT_DEFORMATION_SCALE",
     "DISPLACEMENT_UNIT",
     "build_scaled_default_model",
     "build_triangular_roof_truss",
@@ -67,5 +69,6 @@ __all__ = [
     "format_internal_forces",
     "format_reactions",
     "diagnose_model",
+    "plot_truss",
     "run_interactive",
 ]

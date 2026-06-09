@@ -8,7 +8,10 @@ version = "0.1.0"
 description = "Analisis matricial de armaduras planas en Python."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.26"]
+dependencies = [
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+]
 authors = [{ name = "Proyecto de portafolio" }]
 
 [project.optional-dependencies]

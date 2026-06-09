@@ -15,6 +15,8 @@ estructura modular, testeable y apta para presentacion en GitHub.
   propiedades no positivas y desplazamientos prescritos inconsistentes.
 - Diagnosticos previos para detectar nodos aislados, barras de longitud cero,
   apoyos insuficientes y conteos principales del modelo.
+- Visualizacion 2D de geometria original, deformada amplificada, cargas,
+  apoyos y fuerzas internas por tension/compresion.
 - Pruebas de regresion que conservan los resultados del script original.
 
 ## Estructura
@@ -31,9 +33,16 @@ armadura_matricial/
 |       |-- interactive.py
 |       |-- models.py
 |       |-- presentation.py
+|       |-- visualization.py
 |       `-- solver.py
 |-- tests/
 |-- examples/
+|   |-- analisis_interactivo.py
+|   |-- caso_base.py
+|   |-- graficar_caso_base.py
+|   `-- graficar_warren.py
+|-- outputs/
+|   `-- figures/
 |-- README.md
 |-- requirements.txt
 |-- pyproject.toml
@@ -127,7 +136,6 @@ Instalacion editable con herramientas de desarrollo:
 
 La instalacion editable permite importar el paquete desde cualquier script local
 y agrega herramientas como `pytest` y `ruff`.
-```
 
 ## Ejecucion
 
@@ -179,6 +187,15 @@ por consola:
 ```powershell
 py -3 examples/analisis_interactivo.py
 ```
+
+Generar figuras de resultados:
+
+```powershell
+py -3 examples/graficar_caso_base.py
+py -3 examples/graficar_warren.py
+```
+
+Las figuras se guardan automaticamente en `outputs/figures`.
 
 Casos disponibles:
 
@@ -266,6 +283,33 @@ Estos diagnosticos no reemplazan al solver ni modifican la formulacion
 matricial; sirven para detectar problemas frecuentes de modelado antes de
 intentar resolver el sistema.
 
+## Visualizacion de resultados
+
+La capa grafica vive en `analisis_armadura.visualization` y usa Matplotlib para
+dibujar la geometria original, las cargas, los apoyos y la deformada
+amplificada. El factor de deformada es estrictamente visual: los
+desplazamientos del resultado se mantienen en sus unidades originales.
+
+```python
+from analisis_armadura import MatrixTrussAnalyzer, create_default_model, plot_truss
+
+model = create_default_model()
+result = MatrixTrussAnalyzer(model).solve()
+
+plot_truss(
+    model,
+    result,
+    deformation_scale=100.0,
+    output_path="outputs/figures/caso_base_deformada.png",
+)
+```
+
+Ejemplos generados:
+
+![Caso base deformado](outputs/figures/caso_base_deformada.png)
+
+![Armadura Warren deformada](outputs/figures/warren_deformada.png)
+
 ## Resultados del caso base
 
 Desplazamientos globales en centimetros:
@@ -323,6 +367,7 @@ Las pruebas verifican que:
 - El analizador detecta datos invalidos con excepciones claras.
 - Los diagnosticos estructurales reportan nodos aislados, apoyos insuficientes,
   elementos de longitud cero y conteos del modelo.
+- La visualizacion genera imagenes PNG y no muta los desplazamientos reales.
 
 ## Problemas detectados en el script original
 
