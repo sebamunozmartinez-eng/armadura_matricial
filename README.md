@@ -339,10 +339,8 @@ Hoja de ruta propuesta:
   - exportación de figuras en SVG/PDF.
 - Integración opcional con notebooks para uso docente.
 
-## Licencia recomendada
+## Licencia
 
-Para un proyecto educativo y de portafolio, se recomienda usar la licencia MIT.
+Este proyecto se distribuye bajo la licencia MIT.
 
-La licencia MIT es simple, ampliamente reconocida y permite que otras personas estudien, usen y adapten el código con pocas restricciones, manteniendo la atribución al autor original.
-
-Si el proyecto se publica en GitHub, conviene agregar un archivo `LICENSE` con el texto oficial de la licencia MIT.
+La licencia MIT es simple, ampliamente reconocida y permite que otras personas estudien, usen y adapten el código con pocas restricciones, manteniendo la atribución al autor original. Consulta el archivo [LICENSE](LICENSE) para ver el texto completo.
